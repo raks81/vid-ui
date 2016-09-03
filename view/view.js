@@ -9,7 +9,7 @@ angular.module('vidapp.view', ['ngRoute'])
     }])
     .controller('viewCtrl', function ($scope, $sce, $routeParams, $http) {
         $scope.video = {
-            url: $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + $routeParams.id),
+            url: $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + $routeParams.id + '?autoplay=1&rel=0'),
             title: 'The title of the video',
             views: 12345,
             likes: 123,
