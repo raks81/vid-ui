@@ -13,11 +13,11 @@ angular.module('vidapp.home', ['ngRoute'])
         var row = {};
         row.posts = [];
         rows.push(row);
-        $http.jsonp('http://localhost:8080/playlist/PLzufeTFnhupy7sSmQdH5s3nUH8rwsua-U?callback=JSON_CALLBACK').then(function (res) {
+        $http.jsonp('https://rr-vid-service.herokuapp.com/playlist/PLzufeTFnhupy7sSmQdH5s3nUH8rwsua-U?callback=JSON_CALLBACK').then(function (res) {
             var items = res.data.items;
+            var colCount = 0;
             for (var i in items) {
                 var item = items[i];
-                console.log(JSON.stringify(item));
                 row.posts.push({
                     img: item.snippet.thumbnails.high.url,
                     id: item.snippet.resourceId.videoId,
@@ -25,6 +25,12 @@ angular.module('vidapp.home', ['ngRoute'])
                     views: 2000,
                     date: new Date(item.snippet.publishedAt)
                 });
+                if (colCount++ > 5) {
+                    colCount = 0;
+                    row = {};
+                    row.posts = [];
+                    rows.push(row);
+                }
             }
             $scope.loading = false;
             $scope.rows = rows;
