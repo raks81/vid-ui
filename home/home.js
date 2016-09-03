@@ -22,7 +22,7 @@ angular.module('vidapp.home', ['ngRoute'])
                     img: item.snippet.thumbnails.high.url,
                     id: item.id,
                     heading: item.snippet.title,
-                    views: 2000,
+                    views: item.statistics.viewCount,
                     date: new Date(item.snippet.publishedAt)
                 });
                 if (colCount++ > 5) {
