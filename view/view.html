@@ -1,0 +1,25 @@
+<div layout="row">
+    <div layout="column">
+        <md-card>
+            <iframe width="853" height="480" ng-src="{{ video.url }}" frameborder="0" allowfullscreen></iframe>
+        </md-card>
+        <md-card>
+            <md-card-header>
+                <md-card-header-text class="md-title">{{ video.title }}</md-card-header-text>
+            </md-card-header>
+            <md-card-footer><span class="md-caption">{{ video.likes}} : {{ video.dislikes }}</span></md-card-footer>
+        </md-card>
+    </div>
+    <div layout="column">
+        <md-card ng-repeat="post in playlist" layout="row" class="pl_item">
+            <a href="#/view/{{ post.id }}"><img width="100%" src="{{ post.img }}"></a>
+            <md-card-content>
+                <a href="#/view/{{ post.id }}" class="md-body-1">
+                    <div class="v_link">{{ post.heading }}</div>
+                </a>
+                <div class="md-caption">{{ post.views | number}} views</div>
+                <div class="md-caption">{{ post.date }}</div>
+            </md-card-content>
+        </md-card>
+    </div>
+</div>

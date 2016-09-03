@@ -1,0 +1,18 @@
+.v_link {
+    line-height: 1.5em;
+    height: 3em;
+    overflow: hidden;
+    font-weight: bold;
+}
+
+.right-caption {
+    float: right;
+}
+
+a {
+    text-decoration: none;
+}
+
+.pl_item {
+    margin-bottom: 0px;
+}
