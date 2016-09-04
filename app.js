@@ -5,26 +5,15 @@ angular.module('vidapp', ['vidapp.home', 'vidapp.view', 'ngRoute', 'ngMaterial',
         $routeProvider.otherwise({redirectTo: '/home'});
     })
     .run(function ($rootScope, $mdDialog) {
+        //TODO better way of doing this??
         $rootScope.siteName = 'The Video Site';
         $rootScope.copyright = 'Copyright 2016 Videos Online Inc.';
         $rootScope.navItems = [{href: '#/home', title: 'Home'}];
+
         $rootScope.signin = {};
+        $rootScope.profile = getProfile();
 
-        $rootScope.saveProfile = function (profile) {
-            localStorage['profile'] = profile ? JSON.stringify(profile) : "{}";
-        };
-
-        $rootScope.getProfile = function () {
-            return localStorage['profile'] ? JSON.parse(localStorage['profile']) : null;
-        };
-
-        $rootScope.clearProfile = function () {
-            localStorage['profile'] = null;
-        };
-
-        $rootScope.profile = $rootScope.getProfile();
-
-        $rootScope.showPrerenderedDialog = function (ev) {
+        $rootScope.showSigninDialog = function (ev) {
             $rootScope.signin.name = $rootScope.profile ? $rootScope.profile.name : null;
             $rootScope.signin.email = $rootScope.profile ? $rootScope.profile.email : null;
 
@@ -37,10 +26,10 @@ angular.module('vidapp', ['vidapp.home', 'vidapp.view', 'ngRoute', 'ngMaterial',
         };
 
         $rootScope.signIn = function () {
-            $rootScope.profile = $rootScope.getProfile() || {};
+            $rootScope.profile = getProfile() || {};
             $rootScope.profile.name = $rootScope.signin.name;
             $rootScope.profile.email = $rootScope.signin.email;
-            $rootScope.saveProfile($rootScope.profile);
+            saveProfile($rootScope.profile);
             $mdDialog.hide({
                 contentElement: '#signupDialog'
             });
@@ -48,9 +37,21 @@ angular.module('vidapp', ['vidapp.home', 'vidapp.view', 'ngRoute', 'ngMaterial',
 
         $rootScope.signOut = function () {
             $rootScope.profile = null;
-            $rootScope.clearProfile();
+            clearProfile();
             $mdDialog.hide({
                 contentElement: '#signupDialog'
             });
+        }
+
+        function saveProfile(profile) {
+            localStorage['profile'] = profile ? JSON.stringify(profile) : "{}";
+        }
+
+        function getProfile() {
+            return localStorage['profile'] ? JSON.parse(localStorage['profile']) : null;
+        }
+
+        function clearProfile() {
+            localStorage['profile'] = null;
         }
     });

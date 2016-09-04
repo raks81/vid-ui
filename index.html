@@ -2,13 +2,14 @@
 <head>
     <!-- Styles-->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
 
     <!-- Javascript (lib) -->
-    <script src="js/angular.js"></script>
-    <script src="js/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-route.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
@@ -21,21 +22,25 @@
 
     <title>{{ siteName }}</title>
 </head>
-<body>
+<body ngCloak>
 <md-toolbar md-scroll-shrink="true">
-    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap="">
-        <md-button class="md-warn md-raised" ng-click="showPrerenderedDialog($event)" ng-hide="profile">
-            Sign In
-        </md-button>
-        <md-button class="md-fab md-warn md-hue-2" ng-click="showPrerenderedDialog($event)" ng-show="profile">
-            {{ profile.name | limitTo:1 | uppercase }}
-        </md-button>
-    </section>
+    <div layout="row" layout-align="start center">
+        <a href="#/home"><img height="50px" src="https://developers.google.com/youtube/images/YouTube-icon-full_color.png" /></a>
+        <div flex layout-align="end center">
+            <md-button class="md-warn md-raised right-caption" ng-click="showSigninDialog($event)" ng-hide="profile">
+                Sign In
+            </md-button>
+            <md-button class="md-fab md-warn md-hue-2 right-caption" ng-click="showSigninDialog($event)"
+                       ng-show="profile">
+                {{ profile.name | limitTo:1 | uppercase }}
+            </md-button>
+        </div>
+    </div>
 </md-toolbar>
 <div flex layout="row">
     <md-sidenav md-is-locked-open="true" class="md-whiteframe-z1">
         <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">Sidenav Left</h1>
+            <h1 class="md-toolbar-tools">Favourites</h1>
         </md-toolbar>
         <md-content layout-padding="">
             <ul>
