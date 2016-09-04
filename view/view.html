@@ -1,7 +1,8 @@
 <div layout="row">
     <div layout="column">
         <md-card>
-            <iframe width="853" height="480" ng-src="{{ video.url }}" frameborder="0" allowfullscreen></iframe>
+            <youtube-video video-id="video.id" player="ytPlayer" player-vars="playerVars" player-width="'853px'"
+                           player-height="'480px'"></youtube-video>
         </md-card>
         <md-card>
             <md-card-header>
@@ -12,7 +13,7 @@
     </div>
     <div layout="column">
         <md-card ng-repeat="post in playlist" layout="row" class="pl_item">
-            <a href="#/view/{{ post.id }}"><img width="100%" src="{{ post.img }}"></a>
+            <a href="#/view/{{ post.id }}"><img width="100%" ng-src="{{ post.img }}"></a>
             <md-card-content>
                 <a href="#/view/{{ post.id }}" class="md-body-1">
                     <div class="v_link">{{ post.heading }}</div>

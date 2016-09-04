@@ -1,21 +1,40 @@
 'use strict'
 
-angular.module('vidapp.view', ['ngRoute'])
+angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
     .config(['$routeProvider', function ($routeProvider) {
         $routeProvider.when('/view/:id+', {
             templateUrl: 'view/view.html',
             controller: 'viewCtrl'
         });
     }])
-    .controller('viewCtrl', function ($scope, $sce, $routeParams, $http) {
+    .controller('viewCtrl', function ($scope, $rootScope, $sce, $routeParams, $http, $interval) {
         $scope.video = {
-            url: $sce.trustAsResourceUrl('https://www.youtube.com/embed/' + $routeParams.id + '?autoplay=1&rel=0'),
+            id: $routeParams.id,
             title: 'The title of the video',
             views: 12345,
             likes: 123,
             dislikes: 2
         };
-        $scope.loading = true;
+
+        $scope.playerVars = {
+            autoplay: 1,
+            rel: 0,
+            start: getStartPosition($routeParams.id)
+        };
+
+        $scope.$on('youtube.player.playing', function (/*$event, player*/) {
+            $interval(function () {
+                var position = Math.floor($scope.ytPlayer.getCurrentTime());
+                if ($rootScope.profile) {
+                    $rootScope.profile.history = $rootScope.profile.history || {};
+                    $rootScope.profile.history[$routeParams.id] = {
+                        vid: $routeParams.id, position: position
+                    };
+                    $rootScope.saveProfile($rootScope.profile);
+                }
+            }, 5000);
+        });
+
         var related = [];
         $http.jsonp('https://rr-vid-service.herokuapp.com/related/' + $routeParams.id + '?callback=JSON_CALLBACK').then(function (res) {
             var items = res.data.items;
@@ -29,10 +48,17 @@ angular.module('vidapp.view', ['ngRoute'])
                     date: new Date(item.snippet.publishedAt)
                 });
             }
-            $scope.loading = false;
             $scope.playlist = related;
         }, function (err) {
             //TODO how to show error messages??
         });
+
+        function getStartPosition(vid) {
+            if ($rootScope.profile && $rootScope.profile.history && $rootScope.profile.history[vid]) {
+                return $rootScope.profile.history[vid].position;
+            } else {
+                return 0;
+            }
+        }
     })
 ;

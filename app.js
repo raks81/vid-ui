@@ -11,7 +11,20 @@ angular.module('vidapp', ['vidapp.home', 'vidapp.view', 'ngRoute', 'ngMaterial',
         $rootScope.navItems = [{href: '#/home', title: 'Home'}];
 
         $rootScope.signin = {};
-        $rootScope.profile = getProfile();
+
+        $rootScope.saveProfile = function (profile) {
+            localStorage['profile'] = profile ? JSON.stringify(profile) : "{}";
+        };
+
+        $rootScope.getProfile = function getProfile() {
+            return localStorage['profile'] ? JSON.parse(localStorage['profile']) : null;
+        };
+
+        $rootScope.clearProfile = function clearProfile() {
+            localStorage['profile'] = null;
+        };
+
+        $rootScope.profile = $rootScope.getProfile();
 
         $rootScope.showSigninDialog = function (ev) {
             $rootScope.signin.name = $rootScope.profile ? $rootScope.profile.name : null;
@@ -26,10 +39,10 @@ angular.module('vidapp', ['vidapp.home', 'vidapp.view', 'ngRoute', 'ngMaterial',
         };
 
         $rootScope.signIn = function () {
-            $rootScope.profile = getProfile() || {};
+            $rootScope.profile = $rootScope.getProfile() || {};
             $rootScope.profile.name = $rootScope.signin.name;
             $rootScope.profile.email = $rootScope.signin.email;
-            saveProfile($rootScope.profile);
+            $rootScope.saveProfile($rootScope.profile);
             $mdDialog.hide({
                 contentElement: '#signupDialog'
             });
@@ -37,21 +50,9 @@ angular.module('vidapp', ['vidapp.home', 'vidapp.view', 'ngRoute', 'ngMaterial',
 
         $rootScope.signOut = function () {
             $rootScope.profile = null;
-            clearProfile();
+            $rootScope.clearProfile();
             $mdDialog.hide({
                 contentElement: '#signupDialog'
             });
-        }
-
-        function saveProfile(profile) {
-            localStorage['profile'] = profile ? JSON.stringify(profile) : "{}";
-        }
-
-        function getProfile() {
-            return localStorage['profile'] ? JSON.parse(localStorage['profile']) : null;
-        }
-
-        function clearProfile() {
-            localStorage['profile'] = null;
         }
     });
