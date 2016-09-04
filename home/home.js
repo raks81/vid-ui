@@ -25,7 +25,7 @@ angular.module('vidapp.home', ['ngRoute'])
                     views: item.statistics.viewCount,
                     date: new Date(item.snippet.publishedAt)
                 });
-                if (colCount++ > 5) {
+                if (++colCount == 5) {
                     colCount = 0;
                     row = {};
                     row.posts = [];

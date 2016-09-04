@@ -2,7 +2,7 @@
 
 <div ng-repeat="row in rows">
     <div layout="row">
-        <md-card ng-repeat="post in row.posts | limitTo:5">
+        <md-card ng-repeat="post in row.posts">
             <md-card-header>
                 <a href="#/view/{{ post.id }}"><img ng-src="{{ post.img }}"></a>
             </md-card-header>
