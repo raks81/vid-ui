@@ -8,8 +8,9 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
         });
     }])
     .controller('viewCtrl', function ($scope, $rootScope, $sce, $routeParams, $http, $interval) {
+        var videoId = $routeParams.id;
         $scope.video = {
-            id: $routeParams.id,
+            id: videoId,
             title: 'The title of the video',
             views: 12345,
             likes: 123,
@@ -19,24 +20,29 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
         $scope.playerVars = {
             autoplay: 1,
             rel: 0,
-            start: getStartPosition($routeParams.id)
+            start: getStartPosition(videoId)
         };
 
         $scope.$on('youtube.player.playing', function (/*$event, player*/) {
-            $interval(function () {
+            var positionWatcher = $interval(function () {
                 var position = Math.floor($scope.ytPlayer.getCurrentTime());
                 if ($rootScope.profile) {
                     $rootScope.profile.history = $rootScope.profile.history || {};
-                    $rootScope.profile.history[$routeParams.id] = {
-                        vid: $routeParams.id, position: position
+                    $rootScope.profile.history[videoId] = {
+                        vid: videoId, position: position
                     };
+                    console.log(videoId + ' ' + $rootScope.profile.history[videoId].position);
                     $rootScope.saveProfile($rootScope.profile);
                 }
             }, 5000);
+            $scope.$on("$destroy", function () {
+                console.log('cancelling postion timer')
+                $interval.cancel(positionWatcher);
+            });
         });
 
         var related = [];
-        $http.jsonp('https://rr-vid-service.herokuapp.com/related/' + $routeParams.id + '?callback=JSON_CALLBACK').then(function (res) {
+        $http.jsonp('https://rr-vid-service.herokuapp.com/related/' + videoId + '?callback=JSON_CALLBACK').then(function (res) {
             var items = res.data.items;
             for (var i in items) {
                 var item = items[i];
@@ -55,6 +61,7 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
 
         function getStartPosition(vid) {
             if ($rootScope.profile && $rootScope.profile.history && $rootScope.profile.history[vid]) {
+                console.log('Starting postion fetched for %s as %s', vid, $rootScope.profile.history[vid].position);
                 return $rootScope.profile.history[vid].position;
             } else {
                 return 0;
