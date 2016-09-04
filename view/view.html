@@ -8,7 +8,15 @@
             <md-card-header>
                 <md-card-header-text class="md-title">{{ video.title }}</md-card-header-text>
             </md-card-header>
-            <md-card-footer><span class="md-caption">{{ video.likes}} : {{ video.dislikes }}</span></md-card-footer>
+            <!--<md-card-footer><span class="md-caption">{{ video.likes}} : {{ video.dislikes }}</span></md-card-footer>-->
+            <md-card-footer layout="column">
+                <div flex layout="row" layout-align="start center">
+                    <span class="">{{ video.views | number}} views</span>
+                    <div flex layout-align="end center" >
+                        <md-progress-linear md-mode="determinate" value="{{ video.likePercent }}"/>
+                    </div>
+                </div>
+            </md-card-footer>
         </md-card>
     </div>
     <div layout="column">

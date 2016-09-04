@@ -11,10 +11,6 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
         var videoId = $routeParams.id;
         $scope.video = {
             id: videoId,
-            title: 'The title of the video',
-            views: 12345,
-            likes: 123,
-            dislikes: 2
         };
 
         $scope.playerVars = {
@@ -39,6 +35,20 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
                 console.log('cancelling postion timer')
                 $interval.cancel(positionWatcher);
             });
+        });
+
+        $http.jsonp('https://rr-vid-service.herokuapp.com/video/' + videoId + '?callback=JSON_CALLBACK').then(function (res) {
+            var items = res.data.items;
+            if (items.length > 0) {
+                var item = items[0];
+                $scope.video.title = item.snippet.title;
+                $scope.video.views = item.statistics.viewCount;
+                $scope.video.likes = item.statistics.likeCount
+                $scope.video.dislikes = item.statistics.dislikeCount;
+                $scope.video.likePercent = Math.round(item.statistics.likeCount / (parseInt(item.statistics.likeCount) + parseInt(item.statistics.dislikeCount)) * 100);
+            }
+        }, function (err) {
+            //TODO how to show error messages??
         });
 
         var related = [];
