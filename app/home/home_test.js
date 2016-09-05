@@ -16,22 +16,7 @@ describe('vidapp.home module', function () {
         $controller = $injector.get('$controller');
 
         vidServiceRequestHandler = $httpBackend.when('JSONP', 'https://rr-vid-service.herokuapp.com/popular?callback=JSON_CALLBACK')
-            .respond({
-                items: [{
-                    id: "AbC", "snippet": {
-                        title: "Some title", thumbnails: {
-                            high: {
-                                "url": "https://i.ytimg.com/vi/PeonBmeFR8o/hqdefault.jpg"
-                            }
-                        }
-                    },
-                    statistics: {
-                        viewCount: "1898917",
-                        likeCount: "181125",
-                        dislikeCount: "5535"
-                    }
-                }]
-            });
+            .respond(popularSample);
     }));
 
 
@@ -51,3 +36,98 @@ describe('vidapp.home module', function () {
         });
     });
 });
+
+var popularSample = {
+    items: [{
+        id: "AbC", "snippet": {
+            title: "Some title", thumbnails: {
+                high: {
+                    "url": "https://i.ytimg.com/vi/PeonBmeFR8o/hqdefault.jpg"
+                }
+            }
+        },
+        statistics: {
+            viewCount: "1898917",
+            likeCount: "181125",
+            dislikeCount: "5535"
+        }
+    }, {
+        id: "AbC", "snippet": {
+            title: "Some title", thumbnails: {
+                high: {
+                    "url": "https://i.ytimg.com/vi/PeonBmeFR8o/hqdefault.jpg"
+                }
+            }
+        },
+        statistics: {
+            viewCount: "1898917",
+            likeCount: "181125",
+            dislikeCount: "5535"
+        }
+    }, {
+        id: "AbC", "snippet": {
+            title: "Some title", thumbnails: {
+                high: {
+                    "url": "https://i.ytimg.com/vi/PeonBmeFR8o/hqdefault.jpg"
+                }
+            }
+        },
+        statistics: {
+            viewCount: "1898917",
+            likeCount: "181125",
+            dislikeCount: "5535"
+        }
+    }, {
+        id: "AbC", "snippet": {
+            title: "Some title", thumbnails: {
+                high: {
+                    "url": "https://i.ytimg.com/vi/PeonBmeFR8o/hqdefault.jpg"
+                }
+            }
+        },
+        statistics: {
+            viewCount: "1898917",
+            likeCount: "181125",
+            dislikeCount: "5535"
+        }
+    }, {
+        id: "AbC", "snippet": {
+            title: "Some title", thumbnails: {
+                high: {
+                    "url": "https://i.ytimg.com/vi/PeonBmeFR8o/hqdefault.jpg"
+                }
+            }
+        },
+        statistics: {
+            viewCount: "1898917",
+            likeCount: "181125",
+            dislikeCount: "5535"
+        }
+    }, {
+        id: "AbC", "snippet": {
+            title: "Some title", thumbnails: {
+                high: {
+                    "url": "https://i.ytimg.com/vi/PeonBmeFR8o/hqdefault.jpg"
+                }
+            }
+        },
+        statistics: {
+            viewCount: "1898917",
+            likeCount: "181125",
+            dislikeCount: "5535"
+        }
+    }, {
+        id: "AbC", "snippet": {
+            title: "Some title", thumbnails: {
+                high: {
+                    "url": "https://i.ytimg.com/vi/PeonBmeFR8o/hqdefault.jpg"
+                }
+            }
+        },
+        statistics: {
+            viewCount: "1898917",
+            likeCount: "181125",
+            dislikeCount: "5535"
+        }
+    }]
+};
