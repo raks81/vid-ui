@@ -38,3 +38,10 @@ jspm_packages
 # Optional REPL history
 .node_repl_history
 
+/app/bower_components/
+.idea/jsLibraryMappings.xml
+.idea/vcs.xml
+app/bower_components/
+/.idea/workspace.xml
+.idea/*
+.idea/
