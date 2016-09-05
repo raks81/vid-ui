@@ -4,11 +4,14 @@ var http = require('http');
 var app = express();
 app.use('/public', express.static('./app'));
 app.use('/ajax', express.static('./ajax'));
+app.get('/', function (req, res) {
+    res.redirect('/public');
+});
 
-http.createServer(app).listen(process.env.PORT,
+var port = process.env.PORT || '8080';
+http.createServer(app).listen(port,
     function () {
-        var port = process.env.PORT || '8080';
-        console.log("Express server listening on port %s", process.env.PORT);
+        console.log("Express server listening on port %s", port);
         console.log("Open http://localhost:" + port + '/public/#/home to test');
     }
 );
