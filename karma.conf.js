@@ -23,7 +23,7 @@ module.exports = function (config) {
             'karma-jasmine',
             'karma-coverage'
         ],
-        // reporters: ['progress', 'coverage'],
-        // preprocessors: { '*home.js': ['coverage'] }
+        reporters: ['progress', 'coverage'],
+        preprocessors: {'**/home/*.js': ['coverage']}
     });
 };
