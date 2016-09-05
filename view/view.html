@@ -21,8 +21,8 @@
     </div>
     <div layout="column">
         <md-card ng-repeat="post in playlist" layout="row" class="pl_item">
-            <a href="#/view/{{ post.id }}"><img width="100%" ng-src="{{ post.img }}"></a>
-            <md-card-content>
+            <a href="#/view/{{ post.id }}"><img width="120px" ng-src="{{ post.img }}"></a>
+            <md-card-content style="padding: 0px 5px 0px 5px">
                 <a href="#/view/{{ post.id }}" class="md-body-1">
                     <div class="v_link">{{ post.heading }}</div>
                 </a>
