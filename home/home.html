@@ -1,7 +1,7 @@
 <md-progress-circular ng-hide="!loading" md-mode="indeterminate"></md-progress-circular>
 
 <div ng-repeat="row in rows">
-    <div class='md-padding' layout="row" layout-wrap>
+    <div layout="row">
         <md-card ng-repeat="post in row.posts">
             <md-card-header>
                 <a href="#/view/{{ post.id }}"><img ng-src="{{ post.img }}"></a>
