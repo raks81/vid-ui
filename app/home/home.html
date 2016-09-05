@@ -2,7 +2,7 @@
 
 <div ng-repeat="row in rows">
     <div class='md-padding' layout="row" layout-wrap>
-        <!--TODO Hardcoded width-->
+        <!--TODO Hardcoded style-->
         <md-card style="width: 18%;" ng-repeat="post in row.posts">
             <md-card-header>
                 <a href="#/view/{{ post.id }}"><img ng-src="{{ post.img }}"></a>
