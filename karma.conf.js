@@ -21,11 +21,9 @@ module.exports = function (config) {
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
-            'karma-junit-reporter'
+            'karma-coverage'
         ],
-        junitReporter: {
-            outputFile: 'test_out/unit.xml',
-            suite: 'unit'
-        }
+        // reporters: ['progress', 'coverage'],
+        // preprocessors: { '*home.js': ['coverage'] }
     });
 };
