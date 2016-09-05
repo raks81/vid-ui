@@ -4,21 +4,15 @@ describe('vidapp.home module', function () {
     beforeEach(module('vidapp.home'));
 
     var $controller, $httpBackend, vidServiceRequestHandler;
-    beforeEach(inject(function (_$controller_, _$httpBackend_) {
-        // The injector unwraps the underscores (_) from around the parameter names when matching
-        $controller = _$controller_;
-        $httpBackend = _$httpBackend_;
-    }));
 
     beforeEach(inject(function ($injector) {
-        // Set up the mock http service responses
         $httpBackend = $injector.get('$httpBackend');
         $controller = $injector.get('$controller');
 
+        // Set up the mock http service responses
         vidServiceRequestHandler = $httpBackend.when('JSONP', 'https://rr-vid-service.herokuapp.com/popular?callback=JSON_CALLBACK')
             .respond(popularSample);
     }));
-
 
     afterEach(function () {
         $httpBackend.verifyNoOutstandingExpectation();
@@ -30,9 +24,12 @@ describe('vidapp.home module', function () {
             //spec body
             var $scope = {};
             var controller = $controller('homeCtrl', {$scope: $scope});
-            $httpBackend.flush();
             expect(controller).toBeDefined();
+            expect($scope.loading).toBe(true);
+            $httpBackend.flush();
             expect($scope.rows).not.toBeUndefined();
+            expect($scope.loading).toBe(false);
+            //TODO add more assertions
         });
     });
 });
