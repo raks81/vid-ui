@@ -61,6 +61,9 @@ var popularSample = {
             viewCount: "1898917",
             likeCount: "181125",
             dislikeCount: "5535"
+        },
+        contentDetails: {
+            duration: "2:07"
         }
     }, {
         id: "AbC", "snippet": {
@@ -74,6 +77,9 @@ var popularSample = {
             viewCount: "1898917",
             likeCount: "181125",
             dislikeCount: "5535"
+        },
+        contentDetails: {
+            duration: "2:07"
         }
     }, {
         id: "AbC", "snippet": {
@@ -87,6 +93,9 @@ var popularSample = {
             viewCount: "1898917",
             likeCount: "181125",
             dislikeCount: "5535"
+        },
+        contentDetails: {
+            duration: "2:07"
         }
     }, {
         id: "AbC", "snippet": {
@@ -100,6 +109,9 @@ var popularSample = {
             viewCount: "1898917",
             likeCount: "181125",
             dislikeCount: "5535"
+        },
+        contentDetails: {
+            duration: "2:07"
         }
     }, {
         id: "AbC", "snippet": {
@@ -113,6 +125,9 @@ var popularSample = {
             viewCount: "1898917",
             likeCount: "181125",
             dislikeCount: "5535"
+        },
+        contentDetails: {
+            duration: "2:07"
         }
     }, {
         id: "AbC", "snippet": {
@@ -126,6 +141,9 @@ var popularSample = {
             viewCount: "1898917",
             likeCount: "181125",
             dislikeCount: "5535"
+        },
+        contentDetails: {
+            duration: "2:07"
         }
     }, {
         id: "AbC", "snippet": {
@@ -139,6 +157,9 @@ var popularSample = {
             viewCount: "1898917",
             likeCount: "181125",
             dislikeCount: "5535"
+        },
+        contentDetails: {
+            duration: "2:07"
         }
     }]
 };

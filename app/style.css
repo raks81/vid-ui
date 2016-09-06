@@ -16,3 +16,17 @@ a {
 .pl_item {
     margin-bottom: 0px;
 }
+
+.video_tn {
+    position: relative;
+}
+
+.duration {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    background: #000000;
+    color: #ffffff;
+    opacity: 0.75;
+    padding: 2px;
+}

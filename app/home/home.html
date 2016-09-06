@@ -5,7 +5,11 @@
         <!--TODO Hardcoded style-->
         <md-card style="width: 18%;" ng-repeat="post in row.posts">
             <md-card-header>
-                <a href="#/view/{{ post.id }}"><img ng-src="{{ post.img }}"></a>
+                <div class="video_tn">
+                    <a href="#/view/{{ post.id }}"><img ng-src="{{ post.img }}"/></a>
+                    <span class="duration md-caption">{{ post.duration }}</span>
+                </div>
+                </a>
             </md-card-header>
 
             <md-card-content>

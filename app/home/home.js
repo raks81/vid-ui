@@ -23,7 +23,8 @@ angular.module('vidapp.home', ['ngRoute'])
                     id: item.id,
                     heading: item.snippet.title,
                     views: item.statistics.viewCount,
-                    date: new Date(item.snippet.publishedAt)
+                    date: new Date(item.snippet.publishedAt),
+                    duration: item.contentDetails.duration
                 });
                 if (++colCount == 5) {
                     colCount = 0;

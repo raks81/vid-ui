@@ -60,6 +60,7 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
                     id: item.id.videoId,
                     heading: item.snippet.title,
                     views: 2000,
+                    duration: item.contentDetails.duration,
                     date: new Date(item.snippet.publishedAt)
                 });
             }
