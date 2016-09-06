@@ -16,8 +16,8 @@
                         <md-progress-linear md-mode="determinate" value="{{ video.likePercent }}"/>
                     </div>
                     <span class="md-caption" style="padding-top: 5px;">
-                        <md-icon md-font-set="md">thumb_up</md-icon> {{ video.likes}}
-                        <md-icon md-font-set="md">thumb_down</md-icon> {{ video.dislikes}}
+                        <md-icon md-font-set="md">thumb_up</md-icon> {{ video.likes | number }}
+                        <md-icon md-font-set="md">thumb_down</md-icon> {{ video.dislikes | number }}
                     </span>
                 </div>
             </md-card-footer>
