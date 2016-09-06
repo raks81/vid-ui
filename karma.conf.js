@@ -12,7 +12,7 @@ module.exports = function (config) {
             'bower_components/angular-messages/angular-messages.js',
             'bower_components/angular-material/angular-material.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            '../ajax/libs/angular-youtube-embed/angular-youtube-embed.min.js',
+            'bower_components/angular-youtube-mb/dist/angular-youtube-embed.min.js',
             'home/**/*.js',
             'view/**/*.js'
         ],
