@@ -57,9 +57,9 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
                 var item = items[i];
                 related.push({
                     img: item.snippet.thumbnails.high.url,
-                    id: item.id.videoId,
+                    id: item.id,
                     heading: item.snippet.title,
-                    views: 2000,
+                    views: item.statistics.viewCount,
                     duration: item.contentDetails.duration,
                     date: new Date(item.snippet.publishedAt)
                 });

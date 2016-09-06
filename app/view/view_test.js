@@ -120,6 +120,9 @@ var relatedSample = {
                 "viewCount": "358504",
                 "likeCount": "1388",
                 "dislikeCount": "106"
+            },
+            "contentDetails": {
+                "duration":"1:06"
             }
         }
     ]
