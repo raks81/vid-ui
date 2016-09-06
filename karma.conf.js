@@ -12,7 +12,9 @@ module.exports = function (config) {
             'bower_components/angular-messages/angular-messages.js',
             'bower_components/angular-material/angular-material.js',
             'bower_components/angular-mocks/angular-mocks.js',
-            'home/**/*.js'
+            '../ajax/libs/angular-youtube-embed/angular-youtube-embed.min.js',
+            'home/**/*.js',
+            'view/**/*.js'
         ],
         autoWatch: true,
         frameworks: ['jasmine'],
@@ -24,6 +26,6 @@ module.exports = function (config) {
             'karma-coverage'
         ],
         reporters: ['progress', 'coverage'],
-        preprocessors: {'**/home/*.js': ['coverage']}
+        preprocessors: {'{**/home/*.js,**/view/*.js}': ['coverage']}
     });
 };

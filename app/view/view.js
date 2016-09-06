@@ -10,7 +10,7 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
     .controller('viewCtrl', function ($scope, $rootScope, $sce, $routeParams, $http, $interval) {
         var videoId = $routeParams.id;
         $scope.video = {
-            id: videoId,
+            id: videoId
         };
 
         $scope.playerVars = {
@@ -18,7 +18,6 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
             rel: 0,
             start: getStartPosition(videoId)
         };
-
         $scope.$on('youtube.player.playing', function (/*$event, player*/) {
             var positionWatcher = $interval(function () {
                 var position = Math.floor($scope.ytPlayer.getCurrentTime());

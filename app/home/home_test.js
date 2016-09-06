@@ -25,9 +25,23 @@ describe('vidapp.home module', function () {
             var $scope = {};
             var controller = $controller('homeCtrl', {$scope: $scope});
             expect(controller).toBeDefined();
+            $httpBackend.flush();
+        });
+        it('should set the loding flag correctly after the service call', function () {
+            //spec body
+            var $scope = {};
+            var controller = $controller('homeCtrl', {$scope: $scope});
+            expect(controller).toBeDefined();
             expect($scope.loading).toBe(true);
             $httpBackend.flush();
-            expect($scope.rows).not.toBeUndefined();
+            expect($scope.loading).toBe(false);
+        });
+        it('should have a controller should set the rows object after service call', function () {
+            //spec body
+            var $scope = {};
+            var controller = $controller('homeCtrl', {$scope: $scope});
+            expect(controller).toBeDefined();
+            $httpBackend.flush();
             expect($scope.loading).toBe(false);
             //TODO add more assertions
         });
