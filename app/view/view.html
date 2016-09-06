@@ -10,11 +10,16 @@
             </md-card-header>
             <!--<md-card-footer><span class="md-caption">{{ video.likes}} : {{ video.dislikes }}</span></md-card-footer>-->
             <md-card-footer layout="column">
-                <div flex layout="row" layout-align="start center">
-                    <span class="">{{ video.views | number}} views</span>
-                    <div flex layout-align="end center">
+                <div layout="column" layout-align="center start">
+                    <!--TODO: lotsa hardcoded styles-->
+                    <span style="padding-bottom: 5px;">{{ video.views | number}} views</span>
+                    <div style="width: 20%;" ng-show="video.likePercent">
                         <md-progress-linear md-mode="determinate" value="{{ video.likePercent }}"/>
                     </div>
+                    <span class="md-caption" style="padding-top: 5px;">
+                        <md-icon md-font-set="md">thumb_up</md-icon> {{ video.likes}}
+                        <md-icon md-font-set="md">thumb_down</md-icon> {{ video.dislikes}}
+                    </span>
                 </div>
             </md-card-footer>
         </md-card>

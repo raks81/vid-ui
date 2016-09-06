@@ -1,8 +1,9 @@
 'use strict'
 
 angular.module('vidapp', ['vidapp.home', 'vidapp.view', 'ngRoute', 'ngMaterial', 'ngMessages'])
-    .config(function ($routeProvider) {
+    .config(function ($routeProvider, $mdIconProvider) {
         $routeProvider.otherwise({redirectTo: '/home'});
+        $mdIconProvider.fontSet('md', 'material-icons');
     })
     .run(function ($rootScope, $mdDialog) {
         //TODO better way of doing this??
