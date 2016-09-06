@@ -3,12 +3,13 @@
 describe('vidapp.view module', function () {
     beforeEach(module('vidapp.view'));
 
-    var $controller, $httpBackend, $rootScope;
+    var $controller, $httpBackend, $rootScope, $interval;
 
     beforeEach(inject(function ($injector) {
         $httpBackend = $injector.get('$httpBackend');
         $controller = $injector.get('$controller');
         $rootScope = $injector.get('$rootScope');
+        $interval = $injector.get('$interval');
 
         // Set up the mock http service responses
         $httpBackend.when('JSONP', 'https://rr-vid-service.herokuapp.com/related/AbC?callback=JSON_CALLBACK')
@@ -63,6 +64,41 @@ describe('vidapp.view module', function () {
                 rel: 0,
                 start: 14
             });
+        });
+
+        it('should save the current position of the video being played ', function () {
+            $rootScope.profile = sampleProfile;
+            var $scope, controller;
+            spyOn($rootScope, '$broadcast').and.callThrough();
+            spyOn($interval, 'cancel').and.callThrough();
+
+            $rootScope.saveProfile = jasmine.createSpy("saveProfile spy");
+
+            $scope = $rootScope.$new();
+            controller = $controller('viewCtrl', {$scope: $scope, $routeParams: {id: 'AbC'}, $interval: $interval});
+            expect(controller).toBeDefined();
+            $httpBackend.flush();
+
+            //Setup YT player
+            $scope.ytPlayer = {
+                getCurrentTime: function () {
+                    return 5;
+                }
+            };
+            // Simulate player has started
+            $rootScope.$broadcast('youtube.player.playing', [{event: {}, player: {}}]);
+
+            //Simulate 5s has passed since video started
+            $interval.flush(5000);
+            expect($rootScope.saveProfile).toHaveBeenCalled();
+
+            // Simulate navigation away from page
+            $rootScope.$broadcast('$destroy', []);
+
+            expect($interval.cancel).toHaveBeenCalled();
+
+            expect($rootScope.profile.history.AbC.position).toEqual(5);
+            // TODO add more expectations
         });
     });
 });

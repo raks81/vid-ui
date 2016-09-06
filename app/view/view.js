@@ -24,7 +24,7 @@ angular.module('vidapp.view', ['ngRoute', 'youtube-embed'])
                 if ($rootScope.profile) {
                     $rootScope.profile.history = $rootScope.profile.history || {};
                     $rootScope.profile.history[videoId] = {
-                        vid: videoId, position: position
+                        position: position
                     };
                     console.log(videoId + ' ' + $rootScope.profile.history[videoId].position);
                     $rootScope.saveProfile($rootScope.profile);
