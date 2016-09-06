@@ -31,11 +31,11 @@
             </div>
             <!--TODO Hardcoded style-->
             <md-card-content style="padding: 0px 5px 0px 5px">
-                <a href="#/view/{{ post.id }}" class="md-body-1">
-                    <div class="v_link">{{ post.heading }}</div>
+                <a class="tn_link" href="#/view/{{ post.id }}" class="md-body-1">
+                    <div class="tn_link">{{ post.heading }}</div>
                 </a>
-                <div class="md-caption">{{ post.views | number}} views</div>
-                <div class="md-caption">{{ post.date | date}}</div>
+                <div class="tn_footer">{{ post.views | number}} views</div>
+                <div class="tn_footer">{{ post.date | date}}</div>
             </md-card-content>
         </md-card>
     </div>

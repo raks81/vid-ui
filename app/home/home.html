@@ -1,10 +1,10 @@
 <md-progress-circular ng-hide="!loading" md-mode="indeterminate"></md-progress-circular>
 
 <div ng-repeat="row in rows">
-    <div class='md-padding' layout="row" layout-wrap>
-        <!--TODO Hardcoded style-->
-        <md-card style="width: 18%;" ng-repeat="post in row.posts">
-            <md-card-header>
+    <!--TODO Hardcoded style-->
+    <div class='md-padding' layout="row" layout-wrap style="padding-left: 5px; padding-top: 5px; padding-bottom: 5px;">
+        <md-card class="tn_card" ng-repeat="post in row.posts">
+            <md-card-header class="tn_header">
                 <div class="video_tn">
                     <a href="#/view/{{ post.id }}"><img ng-src="{{ post.img }}"/></a>
                     <span class="duration md-caption">{{ post.duration }}</span>
@@ -12,16 +12,14 @@
                 </a>
             </md-card-header>
 
-            <md-card-content>
-                <a href="#/view/{{ post.id }}" class="md-body-1">
-                    <div class="v_link">{{ post.heading }}</div>
+            <md-card-content class="tn_content">
+                <a class="tn_link" href="#/view/{{ post.id }}" class="md-body-1">
+                    <div class="tn_link">{{ post.heading }}</div>
                 </a>
+                <span class="tn_footer left-caption">{{ post.views | number}} views</span>
+                <span class="tn_footer right-caption">{{ post.date | date:dd-MMM-yy}}</span>
             </md-card-content>
 
-            <md-card-footer>
-                <span class="md-caption">{{ post.views | number}} views</span>
-                <span class="md-caption right-caption">{{ post.date | date:dd-MMM-yy}}</span>
-            </md-card-footer>
         </md-card>
     </div>
 </div>
