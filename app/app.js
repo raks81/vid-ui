@@ -9,7 +9,12 @@ angular.module('vidapp', ['vidapp.home', 'vidapp.view', 'ngRoute', 'ngMaterial',
         //TODO better way of doing this??
         $rootScope.siteName = 'The Video Site';
         $rootScope.copyright = 'Copyright 2016 Videos Online Inc.';
-        $rootScope.navItems = [{href: '#/home', title: 'Home'}];
+        $rootScope.navItems = [{href: '#/home', title: 'Home'},
+            {href: '#/mychannel', title: 'My Channel'},
+            {href: '#/trending', title: 'Trending'},
+            {href: '#/history', title: 'History'},
+            {href: '#/later', title: 'Watch Later'}
+        ];
 
         $rootScope.signin = {};
 

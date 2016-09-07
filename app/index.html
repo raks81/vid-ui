@@ -42,13 +42,10 @@
 <div flex layout="row">
     <md-sidenav md-is-locked-open="true" class="md-whiteframe-z1">
         <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">Favourites</h1>
         </md-toolbar>
-        <md-content layout-padding="">
-            <ul>
-                <li ng-repeat="nav in navItems"><a href="{{ nav.href}}">{{nav.title}}</a></li>
-            </ul>
-        </md-content>
+        <section layout="column" layout-align="start stretch" layout-wrap>
+            <md-button ng-repeat="nav in navItems" ng-href="{{ nav.href }}" class="nav_item">{{nav.title}}</md-button>
+        </section>
     </md-sidenav>
     <div ng-view></div>
 </div>

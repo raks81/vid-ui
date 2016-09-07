@@ -56,3 +56,8 @@
     width: 18%;
     margin: 5px;
 }
+
+.nav_item {
+    text-align: left;
+    text-transform: none;
+}
